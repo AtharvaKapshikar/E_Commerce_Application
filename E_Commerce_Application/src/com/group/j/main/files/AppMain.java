@@ -1,9 +1,12 @@
-package com.group.j.funcationality.implemention;
+package com.group.j.main.files;
 
 import java.util.Scanner;
 
-public class StoreProductImpl {
-	
+import com.group.j.functionality.implementation.UserLogin;
+import com.group.j.functionality.implementation.UserRegistrationImpl;
+
+public class AppMain {
+
 	private int input;
 	Scanner sc= new Scanner(System.in);
 	
@@ -36,8 +39,8 @@ public class StoreProductImpl {
 				 ur.setUserDetails();
 				 break;
 			 case 2 :
-				 UserLogin ul = new UserLogin();
-				 ul.checkCreadentials();
+				 UserLogin userLogin = new UserLogin();
+				 userLogin.checkCreadentials();
 				 break;
 			default :
 				System.out.println("Wrong input");
@@ -48,8 +51,7 @@ public class StoreProductImpl {
 	}
 	
 	public static void main(String[] args) {
-		StoreProductImpl s = new StoreProductImpl();
-		s.getrun();
+		AppMain am = new AppMain();
+		am.getrun();
 	}
-
 }

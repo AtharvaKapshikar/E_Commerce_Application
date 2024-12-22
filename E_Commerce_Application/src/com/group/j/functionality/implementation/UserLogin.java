@@ -1,48 +1,52 @@
-package com.group.j.funcationality.implemention;
+package com.group.j.functionality.implementation;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import com.group.j.main.files.DatabaseConn;
+
 public class UserLogin {
 	
-	private static final String DriverName = "oracle.jdbc.driver.OracleDriver";
-	private static final String ConnURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String UserName = "system";
-	private static final String Password = "system";
 	private static final String sql = "select * from userdetails";
 
 	Scanner sc = new Scanner(System.in);
-	void checkCreadentials() {
+	
+	public void checkCreadentials() {
 		
 		System.out.println("Enter the username>> ");
 		String username = sc.next();
 		System.out.println("Enter the password>>");
 		String password = sc.next();
 		
+		boolean checkLogin = false;
+		
 		try {
-			Class.forName(DriverName);
-			Connection con = DriverManager.getConnection(ConnURL, UserName, Password);
+			Connection con = DatabaseConn.getConnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
 			String usern = rs.getString(3);
 			String pass = rs.getString(4);
+			
 			if(username.equals(usern) && password.equals(pass)) {
-				System.out.println("Successfully login...");
-			}else {
-				System.out.println("Invalid username and password");
+				checkLogin = true;
+				break;
+				//System.out.println("Successfully login...");
 			}
 		}
+			
+		if(checkLogin == true) {
+			System.out.println("Successfully login...");
+		}else {
+			System.out.println("Invalid creadentials");
+		}	
 		con.close();
 		stmt.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
 }

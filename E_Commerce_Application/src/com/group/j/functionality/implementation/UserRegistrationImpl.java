@@ -1,24 +1,17 @@
 
 
-package com.group.j.funcationality.implemention;
+package com.group.j.functionality.implementation;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.group.j.functionality.UserRegistration;
+import com.group.j.main.files.DatabaseConn;
 
-public class UserRegistrationImpl implements UserRegistration {
+public class UserRegistrationImpl implements UserRegistration {	
 	
-	private static final String DriverName = "oracle.jdbc.driver.OracleDriver";
-	private static final String ConnURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String UserName = "system";
-	private static final String Password = "system";
-	//private static final String sql = "insert into ";
-	
-
 	Scanner sc= new Scanner(System.in);
 	
 	@Override
@@ -50,9 +43,10 @@ public class UserRegistrationImpl implements UserRegistration {
 	public void saveIntoDatabase(String fname,String lname,String username, String password, String city, String email, String mnumber) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
+		
 		try {
-		Class.forName(DriverName);
-		con= DriverManager.getConnection(ConnURL, UserName, Password);
+
+		con = DatabaseConn.getConnection();
 		ps = con.prepareStatement("insert into userdetails (firstname,lastname,username,password,city,email,mobileno) values(?,?,?,?,?,?,?)");
 		ps.setString(1, fname);
 		ps.setString(2, lname);
