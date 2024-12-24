@@ -12,13 +12,15 @@ public class UserLogin {
 	private static final String sql = "select * from userdetails";
 
 	Scanner sc = new Scanner(System.in);
+	String username = null;
+	String password = null;
 	
 	public void checkCreadentials() {
 		
 		System.out.println("Enter the username>> ");
-		String username = sc.next();
+		username = sc.next();
 		System.out.println("Enter the password>>");
-		String password = sc.next();
+		password = sc.next();
 		
 		boolean checkLogin = false;
 		

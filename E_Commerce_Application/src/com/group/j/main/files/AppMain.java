@@ -2,8 +2,10 @@ package com.group.j.main.files;
 
 import java.util.Scanner;
 
+import com.group.j.functionality.implementation.StoreProductImpl;
 import com.group.j.functionality.implementation.UserLogin;
 import com.group.j.functionality.implementation.UserRegistrationImpl;
+import com.group.j.functionality.implementation.ViewProducts;
 
 public class AppMain {
 
@@ -41,6 +43,13 @@ public class AppMain {
 			 case 2 :
 				 UserLogin userLogin = new UserLogin();
 				 userLogin.checkCreadentials();
+				 break;
+			 case 3:
+				 ViewProducts vp = new ViewProducts();
+				 vp.getProductsItems();
+				 break;
+			 case 7 :
+				 StoreProductImpl spi = new StoreProductImpl();
 				 break;
 			default :
 				System.out.println("Wrong input");
