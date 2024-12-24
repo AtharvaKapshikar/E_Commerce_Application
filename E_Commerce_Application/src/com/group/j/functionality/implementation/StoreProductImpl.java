@@ -13,7 +13,7 @@ public class StoreProductImpl implements StoreProduct {
 	Scanner sc = new Scanner(System.in);
 	
 	
-	void setProduct() {
+	public void setProduct() {
 		
 		System.out.println("Enter Product Id>> ");
 		int pId = sc.nextInt();

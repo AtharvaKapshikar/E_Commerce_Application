@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 
+import com.group.j.main.files.AppMain;
 import com.group.j.main.files.DatabaseConn;
+import com.sun.xml.internal.ws.api.message.Attachment;
 
 public class UserLogin {
 	
@@ -14,8 +16,10 @@ public class UserLogin {
 	Scanner sc = new Scanner(System.in);
 	String username = null;
 	String password = null;
+	int checkAttemp = 0;
+	AppMain appMain = new AppMain();
 	
-	public void checkCreadentials() {
+	public void checkCredentials() {
 		
 		System.out.println("Enter the username>> ");
 		username = sc.next();
@@ -44,6 +48,15 @@ public class UserLogin {
 			System.out.println("Successfully login...");
 		}else {
 			System.out.println("Invalid creadentials");
+			
+			checkAttemp++;
+			if(checkAttemp>5) {
+				System.out.println("Login attempt limit exceed...! login after 5 min");
+				appMain.getRun();
+				return;
+			}else {
+				checkCredentials();
+			}
 		}	
 		con.close();
 		stmt.close();

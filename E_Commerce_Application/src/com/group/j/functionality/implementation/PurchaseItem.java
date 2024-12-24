@@ -6,13 +6,14 @@ import java.util.Scanner;
 
 import com.group.j.main.files.DatabaseConn;
 
-public class PurchaseItem extends BuyProduct{
+public class PurchaseItem {
 
-	static PurchaseItem pi = new PurchaseItem();
-	ViewCart vc = new ViewCart();
+	
+	
 	String isPurchased = null;
 	Scanner sc = new Scanner(System.in);
 	DatabaseConn dbc = new DatabaseConn();
+	ViewCart vc = new ViewCart();
 	
 	public void purchaseItem() {
 		vc.getCart();
@@ -41,8 +42,4 @@ public class PurchaseItem extends BuyProduct{
 		}
 	}
 	
-	public static void main(String[] args) {
-		pi.purchaseItem();
-		
-	}
 }

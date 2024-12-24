@@ -3,28 +3,32 @@ package com.group.j.functionality.implementation;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
+import com.group.j.main.files.AppMain;
 import com.group.j.main.files.DatabaseConn;
 
-public class ViewCart {
+public class ViewCart{
 
     DatabaseConn dbc = new DatabaseConn();
     UserLogin ul = new UserLogin();
+    Scanner sc = new Scanner(System.in);
+
+    AppMain appMain = new AppMain();
     String username = null;
 
-    void getCart() {
+   public void getCart() {
         try {
-            ul.checkCreadentials(); // Fix method name to match proper case (checkCredentials instead of checkCreadentials)
+            ul.checkCredentials(); 
             username =  ul.username;
 
             Connection con = dbc.getConnection();
             Statement stmt = con.createStatement();        
-
-            // Use JOIN to fetch cart and product details in one query
+            
             String query = "SELECT p.product_name, p.product_price, c.product_id, c.product_quantity " +
                            "FROM cart c " +
                            "JOIN products p ON c.product_id = p.product_id " +
-                           "WHERE c.username = '" + ul.username + "'";  // Filter cart items by the logged-in username
+                           "WHERE c.username = '" + ul.username + "'"; 
 
             ResultSet rs = stmt.executeQuery(query); 
 
@@ -48,11 +52,12 @@ public class ViewCart {
                 System.out.println("Quantity >> " + pQuantity);
 
                 totalPrice += productPrice * pQuantity;  // Update total price
-                System.out.println("Total price so far >> " + totalPrice);
+                System.out.println("Product Price >> " + totalPrice);
                 
                 allProductPrice += totalPrice;
-                System.out.println("All product price>>" +allProductPrice);
             }
+            
+            System.out.println("All product price>>" +allProductPrice);
 
             if (!found) {
                 System.out.println("No products added to cart.");
@@ -66,9 +71,21 @@ public class ViewCart {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        ViewCart vc = new ViewCart();
-        vc.getCart();
-    }
-}
+   
+   void checkYesNO() {
+	   
+	   System.out.println("Do you want to purchase the products? (Yes/No)");
+		String ans = sc.next();
+		String wantPurchase = ans.toUpperCase();
+		
+		if(wantPurchase.equals("YES")) {
+		    PurchaseItem purchaseItem = new PurchaseItem();
+			purchaseItem.purchaseItem();
+		}else if(wantPurchase.equals("NO")){
+				appMain.getRun();
+			}else {
+				System.out.println("Invalid input enter Yes or No");
+				checkYesNO();
+			}
+		}
+   }

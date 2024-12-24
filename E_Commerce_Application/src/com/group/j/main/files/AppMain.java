@@ -2,9 +2,12 @@ package com.group.j.main.files;
 
 import java.util.Scanner;
 
+import com.group.j.functionality.implementation.BuyProduct;
+import com.group.j.functionality.implementation.PurchaseItem;
 import com.group.j.functionality.implementation.StoreProductImpl;
 import com.group.j.functionality.implementation.UserLogin;
 import com.group.j.functionality.implementation.UserRegistrationImpl;
+import com.group.j.functionality.implementation.ViewCart;
 import com.group.j.functionality.implementation.ViewProducts;
 
 public class AppMain {
@@ -12,7 +15,7 @@ public class AppMain {
 	private int input;
 	Scanner sc= new Scanner(System.in);
 	
-	void getrun() {
+	public void getRun() {
 		
 		System.out.println("*******Welcome to E-Commerce based application******* ");
 		System.out.println("User Operation");
@@ -37,19 +40,36 @@ public class AppMain {
 			 
 			 switch (input) {
 			 case 1 : 
-				 UserRegistrationImpl ur = new UserRegistrationImpl();
-				 ur.setUserDetails();
+				 UserRegistrationImpl userRegistrationImpl = new UserRegistrationImpl();
+				 userRegistrationImpl.setUserDetails();
 				 break;
 			 case 2 :
 				 UserLogin userLogin = new UserLogin();
-				 userLogin.checkCreadentials();
+				 userLogin.checkCredentials();
 				 break;
 			 case 3:
-				 ViewProducts vp = new ViewProducts();
-				 vp.getProductsItems();
+				 ViewProducts viewProducts = new ViewProducts();
+				 viewProducts.getProductsItems();
+				 break;
+			 case 4:
+				 BuyProduct buyProduct = new BuyProduct();
+				 buyProduct.buyProductItem();
+				 break;
+			 case 5:
+				 ViewCart viewCart = new ViewCart();
+				 viewCart.getCart();
+				 break;
+			 case 6:
+				 PurchaseItem purchaseItem = new PurchaseItem();
+				 purchaseItem.purchaseItem();
 				 break;
 			 case 7 :
-				 StoreProductImpl spi = new StoreProductImpl();
+				 StoreProductImpl storeProductImpl = new StoreProductImpl();
+				 storeProductImpl.setProduct();
+				 break;
+			 case 8:
+				 ViewCart viewCart1 = new ViewCart();
+				 viewCart1.getCart();
 				 break;
 			default :
 				System.out.println("Wrong input");
@@ -61,6 +81,6 @@ public class AppMain {
 	
 	public static void main(String[] args) {
 		AppMain am = new AppMain();
-		am.getrun();
+		am.getRun();
 	}
 }
