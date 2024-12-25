@@ -1,13 +1,17 @@
-package com.group.j.functionality.implementation;
+package com.group.j.user.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.group.j.main.files.AppMain;
 import com.group.j.main.files.DatabaseConn;
-import com.group.j.functionality.implementation.ViewCart;
+import com.group.j.user.functionality.implementation.ViewCart;
 
 public class BuyProduct{
 
@@ -32,11 +36,12 @@ public class BuyProduct{
 			int productQuantity = sc.nextInt();
 			
 			con = dbc.getConnection();
-			ps = con.prepareStatement("insert into cart(username,product_id,product_quantity) values(?,?,?)");
+			ps = con.prepareStatement("insert into cart(username,product_id,product_quantity,ispurchased) values(?,?,?,?)");
 			
 			ps.setString(1, ul.username);
 			ps.setInt(2, productId);
 			ps.setInt(3, productQuantity);
+			ps.setInt(4, 0);
 			
 			int i = ps.executeUpdate();
 			System.out.println("Product added into cart...");

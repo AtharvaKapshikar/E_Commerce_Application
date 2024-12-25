@@ -1,4 +1,6 @@
-package com.group.j.functionality.implementation;
+package com.group.j.admin.functionality.implementation;
+
+import com.group.j.user.functionality.implementation.UserLogin;
 
 public class DisplayAmount {
 	

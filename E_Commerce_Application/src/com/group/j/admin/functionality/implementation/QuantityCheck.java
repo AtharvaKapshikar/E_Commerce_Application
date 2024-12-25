@@ -1,4 +1,4 @@
-package com.group.j.functionality.implementation;
+package com.group.j.admin.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

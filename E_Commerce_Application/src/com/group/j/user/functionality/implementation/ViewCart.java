@@ -1,4 +1,4 @@
-package com.group.j.functionality.implementation;
+package com.group.j.user.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,7 +25,7 @@ public class ViewCart{
             Connection con = dbc.getConnection();
             Statement stmt = con.createStatement();        
             
-            String query = "SELECT p.product_name, p.product_price, c.product_id, c.product_quantity " +
+            String query = "SELECT p.product_name, p.product_price, c.product_id, c.product_quantity, c.ispurchased " +
                            "FROM cart c " +
                            "JOIN products p ON c.product_id = p.product_id " +
                            "WHERE c.username = '" + ul.username + "'"; 
@@ -39,41 +39,44 @@ public class ViewCart{
             while (rs.next()) {
                 found = true;
 
-                // Retrieve product and quantity from the result set
-                int pId = rs.getInt("product_id");
-                String pName = rs.getString("product_name");
-                float productPrice = rs.getFloat("product_price");
-                int pQuantity = rs.getInt("product_quantity");
+                int checkPurchased = rs.getInt("ispurchased");
+                if(checkPurchased == 0) {
+                	// Retrieve product and quantity from the result set
+                	int pId = rs.getInt("product_id");
+                	String pName = rs.getString("product_name");
+                	float productPrice = rs.getFloat("product_price");
+                	int pQuantity = rs.getInt("product_quantity");
 
-                // Print product details
-                System.out.println("Username >> " + ul.username);
-                System.out.println("Product id >> " + pId);
-                System.out.println("Product Name >> " + pName);
-                System.out.println("Quantity >> " + pQuantity);
+                	// Print product details
+                	System.out.println("Username >> " + ul.username);
+                	System.out.println("Product id >> " + pId);
+                	System.out.println("Product Name >> " + pName);
+                	System.out.println("Quantity >> " + pQuantity);
 
-                totalPrice = productPrice * pQuantity;  // Update total price
-                System.out.println("Product Price >> " + totalPrice);
-                
-                allProductPrice += totalPrice;
+                	totalPrice = productPrice * pQuantity;  // Update total price
+                	System.out.println("Product Price >> " + totalPrice);
+                	
+                	allProductPrice += totalPrice;
+                	System.out.println("All product price>>" +allProductPrice);
+                }else {
+                	System.out.println("No products added to cart.");
+                }
             }
-            
-            System.out.println("All product price>>" +allProductPrice);
-
-            if (!found) {
+                if (!found) {
                 System.out.println("No products added to cart.");
-            }
+                }
             
          //   checkYesNO();
 
-            con.close();
-            stmt.close();
-            rs.close();
+                con.close();
+                stmt.close();
+                rs.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+            	e.printStackTrace();
+            }
         }
-    }
-}
+   }
    
   // void checkYesNO() {
 	   

@@ -1,4 +1,4 @@
-package com.group.j.functionality.implementation;
+package com.group.j.guest.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,13 +8,12 @@ import java.util.Scanner;
 
 import com.group.j.main.files.AppMain;
 import com.group.j.main.files.DatabaseConn;
+import com.group.j.user.functionality.implementation.UserRegistrationImpl;
 
-public class ViewProducts{
+public class GuestViewProducs {
 
 	Scanner sc = new Scanner(System.in);
 	DatabaseConn dbc = new DatabaseConn();
-	AppMain appMain = new AppMain();
-	BuyProduct buyProduct = new BuyProduct();
 	
 	public void getProductsItems() throws SQLException {
 		
@@ -45,19 +44,27 @@ public class ViewProducts{
 		}
 	}
 	
-	void checkYesNo() throws SQLException {
+void checkYesNo() throws SQLException {
 		
-		System.out.println("Do you want to buy product? (Yes/No) >> ");
+		System.out.println("If you want to buy product register your self");
+		System.out.println("If you want to register enter Yes else No >>");
 		String ans = sc.nextLine();
-		String wantBuyProduct = ans.toUpperCase();
+		String wantRegister = ans.toUpperCase();
 		
-		if(wantBuyProduct.equals("YES")) {
-			buyProduct.buyProductItem();
-		}else if(wantBuyProduct.equals("NO")) {
-			appMain.getRun();
+		if(wantRegister.equals("YES")) {
+			UserRegistrationImpl userRegistrationImpl = new UserRegistrationImpl();
+			userRegistrationImpl.setUserDetails();
+		}else if(wantRegister.equals("NO")) {
+			
 		}else {
 			System.out.println("Invalid input enter Yes or No");
 			checkYesNo();
 		}
 	}
+
+public static void main(String[] args) throws SQLException {
+	GuestViewProducs gvp = new GuestViewProducs();
+	gvp.getProductsItems();
 }
+}
+

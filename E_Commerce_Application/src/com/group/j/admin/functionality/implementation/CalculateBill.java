@@ -1,4 +1,4 @@
-package com.group.j.functionality.implementation;
+package com.group.j.admin.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.group.j.main.files.DatabaseConn;
+import com.group.j.user.functionality.implementation.UserLogin;
 
 public class CalculateBill {
 

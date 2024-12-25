@@ -1,6 +1,6 @@
 
 
-package com.group.j.functionality.implementation;
+package com.group.j.user.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

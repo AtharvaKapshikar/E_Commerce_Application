@@ -1,4 +1,4 @@
-package com.group.j.functionality.implementation;
+package com.group.j.user.functionality.implementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,8 +41,6 @@ public class PurchaseItem {
                     ResultSet rs = pstmt.executeQuery();
                     
                     boolean found = false;  // Flag to check if products were found in cart
-                   // float totalPrice = 0;  // Ensure totalPrice starts from 0 each time
-                   // float allProductPrice = 0;
                     
                     while (rs.next()) {
                         found = true;
@@ -65,19 +63,39 @@ public class PurchaseItem {
                             updatePstmt.setInt(1, pQuantity);
                             updatePstmt.setInt(2, pId);
                             updatePstmt.executeUpdate();
+                            
+                            
                         }
+                        
+                       // updatePstmt.close();
+                        
+                        String updateQuery1 = "UPDATE cart SET isPurchased = ? WHERE username = ? AND product_id = ?";
+                        try (PreparedStatement updatePstmt1 = con.prepareStatement(updateQuery1)) {
+//                            deletePstmt.setString(1, userName);
+//                            int deletedCount = deletePstmt.executeUpdate();
+                        	updatePstmt1.setInt(1, 1);  // Set isPurchased to true
+                        	updatePstmt1.setString(2, userName);
+                        	updatePstmt1.setInt(3, pId);
+                        	updatePstmt1.executeUpdate();
+                        
+                        	updatePstmt1.close();
+                        	
+                        }
+                       
                     }
+                   
+                    
+                   // int pId = rs.getInt("product_id");
                     
                     // Delete the cart items
-                    String deleteQuery = "DELETE FROM cart WHERE username = ?";
-                    try (PreparedStatement deletePstmt = con.prepareStatement(deleteQuery)) {
-                        deletePstmt.setString(1, userName);
-                        int deletedCount = deletePstmt.executeUpdate();
-                        System.out.println("Deleted " + deletedCount + " item(s) from the cart.");
-                    }
+                 //   String deleteQuery = "DELETE FROM cart WHERE username = ?";
                     
+                    rs.close();
+                   
                 }
+               
                 System.out.println("Successfully item purchased...");
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
