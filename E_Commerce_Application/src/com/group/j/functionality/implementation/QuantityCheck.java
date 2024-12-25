@@ -36,7 +36,7 @@ public class QuantityCheck {
 				System.out.println("Product quantity>>" + pQuantity);
 			}
 			
-			System.out.println("Do you want to check more products quantity? (Yes/No)");
+			System.out.println("Do you want to check other products quantity? (Yes/No)");
 			String ans = sc.nextLine();
 			String wantMoreCheck = ans.toUpperCase();
 			

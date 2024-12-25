@@ -55,11 +55,4 @@ public class StoreProductImpl implements StoreProduct {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-	
-		StoreProductImpl sp = new StoreProductImpl();
-		sp.setProduct();
-	
-	}
 }

@@ -51,7 +51,7 @@ public class ViewCart{
                 System.out.println("Product Name >> " + pName);
                 System.out.println("Quantity >> " + pQuantity);
 
-                totalPrice += productPrice * pQuantity;  // Update total price
+                totalPrice = productPrice * pQuantity;  // Update total price
                 System.out.println("Product Price >> " + totalPrice);
                 
                 allProductPrice += totalPrice;
@@ -62,6 +62,8 @@ public class ViewCart{
             if (!found) {
                 System.out.println("No products added to cart.");
             }
+            
+         //   checkYesNO();
 
             con.close();
             stmt.close();
@@ -71,21 +73,22 @@ public class ViewCart{
             e.printStackTrace();
         }
     }
+}
    
-   void checkYesNO() {
+  // void checkYesNO() {
 	   
-	   System.out.println("Do you want to purchase the products? (Yes/No)");
-		String ans = sc.next();
-		String wantPurchase = ans.toUpperCase();
-		
-		if(wantPurchase.equals("YES")) {
-		    PurchaseItem purchaseItem = new PurchaseItem();
-			purchaseItem.purchaseItem();
-		}else if(wantPurchase.equals("NO")){
-				appMain.getRun();
-			}else {
-				System.out.println("Invalid input enter Yes or No");
-				checkYesNO();
-			}
-		}
-   }
+//	   System.out.println("Do you want to purchase the products? (Yes/No)");
+//		String ans = sc.next();
+//		String wantPurchase = ans.toUpperCase();
+//		
+//		if(wantPurchase.equals("YES")) {
+//		    PurchaseItem purchaseItem = new PurchaseItem();
+//			purchaseItem.purchaseItem();
+//		}else if(wantPurchase.equals("NO")){
+//				appMain.getRun();
+//			}else {
+//				System.out.println("Invalid input enter Yes or No");
+//				checkYesNO();
+//			}
+//		}
+   //}

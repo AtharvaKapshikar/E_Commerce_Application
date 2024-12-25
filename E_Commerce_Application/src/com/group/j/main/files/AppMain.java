@@ -3,6 +3,7 @@ package com.group.j.main.files;
 import java.util.Scanner;
 
 import com.group.j.functionality.implementation.BuyProduct;
+import com.group.j.functionality.implementation.CalculateBill;
 import com.group.j.functionality.implementation.PurchaseItem;
 import com.group.j.functionality.implementation.StoreProductImpl;
 import com.group.j.functionality.implementation.UserLogin;
@@ -68,9 +69,10 @@ public class AppMain {
 				 storeProductImpl.setProduct();
 				 break;
 			 case 8:
-				 ViewCart viewCart1 = new ViewCart();
-				 viewCart1.getCart();
+//				 CalculateBill cb = new CalculateBill();
+//				 cb.calculateBill(userName)
 				 break;
+			// case 9
 			default :
 				System.out.println("Wrong input");
 			 }

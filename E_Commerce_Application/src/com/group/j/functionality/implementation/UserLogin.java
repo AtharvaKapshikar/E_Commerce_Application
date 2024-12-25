@@ -14,7 +14,7 @@ public class UserLogin {
 	private static final String sql = "select * from userdetails";
 
 	Scanner sc = new Scanner(System.in);
-	String username = null;
+	static String username = null;
 	String password = null;
 	int checkAttemp = 0;
 	AppMain appMain = new AppMain();
