@@ -10,7 +10,7 @@ public class GuestNotPurchase {
 	
 	public void guestNotPurchased () {
 		
-		System.out.println("If you want to purchase item please register..");
+		System.out.println("You can't purchase product, if you want to purchase register yourself first..");
 		System.out.println("If you want to register enter Yes else No >>");
 		String ans = sc.nextLine();
 		String wantRegister = ans.toUpperCase();

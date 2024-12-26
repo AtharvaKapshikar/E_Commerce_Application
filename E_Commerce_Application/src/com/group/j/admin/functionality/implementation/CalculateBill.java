@@ -11,7 +11,10 @@ import com.group.j.user.functionality.implementation.UserLogin;
 public class CalculateBill {
 
 	DatabaseConn dbc = new DatabaseConn();
-	static UserLogin ul = new UserLogin();
+	UserLogin ul = new UserLogin();
+	
+	
+
 	
     
 	
@@ -22,6 +25,7 @@ public class CalculateBill {
 	        String query = "SELECT p.product_price, c.product_quantity FROM cart c JOIN products p ON c.product_id = p.product_id WHERE c.username = ?";
 	        PreparedStatement pstmt = con.prepareStatement(query);
 	        pstmt.setString(1, userName);
+	        System.out.println(userName);
 	        ResultSet rs = pstmt.executeQuery();
 
 	        while (rs.next()) {
@@ -42,11 +46,4 @@ public class CalculateBill {
 	    }
 	    return totalBill;
 	}
-	
-	public static void main(String[] args) {
-	String userName = ul.username;
-		CalculateBill cb = new CalculateBill();
-		cb.calculateBill(userName);
-	}
-
 }
